@@ -1,5 +1,11 @@
 <?php 
 
+    include_once "php/config.php";
+
+    if(!isset($_SESSION['unique_id'])){
+        header("location: login.php");
+    }
+
     include_once "header.php";
 
 ?>
@@ -13,12 +19,22 @@
 
                     <div class="content">
 
-                        <img src="php/images/1709890279cutie 10 @@.jpg" alt="">
+                        <?php 
+                        
+                            $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+
+                            if(mysqli_num_rows($sql) > 0){
+                                $row = mysqli_fetch_assoc($sql);
+                            }
+
+                        ?>
+
+                        <img src="php/images/<?php echo $row['img']; ?>" alt="">
 
                         <div class="details">
 
-                            <span>First Last</span>
-                            <p>Online</p>
+                            <span><?php echo $row['fname']. " " .$row['lname'];?> Last</span>
+                            <p><?php echo $row['status'] ?></p>
 
                         </div>
 
