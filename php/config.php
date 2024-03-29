@@ -1,6 +1,6 @@
 <?php
 
-$hostname = "localhost"; // Corrected the typo here
+$hostname = "localhost"; 
 $username = "root";
 $password = "";
 $db_name = "phpchatapp_db";
