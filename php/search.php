@@ -11,6 +11,14 @@
 
     $output = "";
 
-    
+    $query = mysqli_query($conn, $sql);
+    if(mysqli_num_rows($query) > 0)
+    {
+        include_once "data.php";
+    }else {
+        $output .= 'No user related to your search term';
+    }
+
+    echo $output;
 
 ?>
