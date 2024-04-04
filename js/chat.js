@@ -12,8 +12,32 @@ inputField.focus();
 
 inputField.onkeyup = () => {
     if(inputField.value != ""){
-
+        sendBtn.classList.add("active");
     }else {
-        
+        sendBtn.classList.remove("active");
     }
+}
+
+sendBtn.onclick = () => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/insert-chat.php", true);
+
+    xhr.onload = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                inputField.value = "";
+                scrollToBottom();
+            }
+        }
+    }
+    let formData = new formData(form);
+    xhr.send(formData);
+}
+
+chatBox.onmouseenter = () => {
+    chatBox.classList.add("active");
+}
+
+chatBox.onmouseleave = () => {
+    chatBox.classList.remove("active");
 }
